@@ -1,0 +1,115 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- balance:
+    use_entities: true
+- transactions:
+    use_entities: true
+- thankyou:
+    use_entities: true
+- human_handoff:
+    use_entities: true
+- out_of_scope:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- branch_info:
+    use_entities: true
+- complaints:
+    use_entities: true
+- services:
+    use_entities: true
+- card_services:
+    use_entities: true
+- loan_services:
+    use_entities: true
+- internet_banking:
+    use_entities: true
+- current balance:
+    use_entities: true
+- user_name:
+    use_entities: true
+- user_account_number:
+    use_entities: true
+- name:
+    use_entities: true
+- account_number:
+    use_entities: true
+- location:
+    use_entities: true
+entities:
+- name
+- account_number
+- location
+#- account_type
+#- amount-of-money
+slots:
+  name:
+    type: text
+  account_number:
+    type: text
+  location:
+    type: text
+responses:
+  utter_greet:
+  - text: "Hey! Welcome to ABC bank assistant. How Can I help you?"
+  utter_goodbye:
+  - text: "Thank for being a valuable customer of ABC bank. Have a great day!"
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  utter_human_handoff_agreed:
+  - text: 'To contact our bank staff directly please connect through this toll free number : +91 '
+  utter_complaints_redirect:
+  - text: 'To register complaints, vistit : www.abcbank.com/complaints/'
+  utter_different_services:
+  - buttons:
+    - payload: /card_services
+      title: Card Services
+    - payload: /loan_services
+      title: Loan services
+    - payload: /internet_banking
+      title: Internet Banking
+    text: These are the different services provided by the ABC bank
+  utter_selected_service:
+  - text: 'To know more about the selected service : Visit www.abcbank.com'
+  utter_ask_location:
+  - text: "Please give your current location?"
+  utter_location_details:
+  - text: "Nearest bank to {Location} is https://www.google.com/maps/place/{Location}/"
+  utter_ask_name:
+  - text: "What is your name?"
+  utter_ask_account_number:
+  - text: "Please give us your account number?"
+  utter_please_rephrase:
+  - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
+  utter_details_thanks:
+  - text: "Thank you for giving the required information. \nName: {Name},\n Account Number: {Account_number}.\nIs the above information correct?"
+actions:
+- action_user_details_submit
+- action_last5_transactions
+- action_user_location_submit
+forms:
+  user_details_form:
+    name:
+      - type: from_entity
+        entity: name
+    account_number:
+      - type: from_entity
+        entity: account_number
+  user_location_form:
+    location:
+      - type: from_entity
+        entity: location
+e2e_actions: []
