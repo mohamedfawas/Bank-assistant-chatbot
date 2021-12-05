@@ -1,0 +1,68 @@
+version: "2.0"
+
+stories:
+- story: balance check
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: transactions check
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: transactions
+  - action: user_details_form
+  - action: action_user_details_submit
+  - intent: affirm
+  - action: action_last5_transactions
+
+- story: services enquiry card
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: services
+  - action: utter_different_services
+  - intent: card_services
+  - action: utter_selected_service
+
+- story: services enquiry loan
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: services
+  - action: utter_different_services
+  - intent: loan_services
+  - action: utter_selected_service
+
+- story: services enquiry internet banking
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: services
+  - action: utter_different_services
+  - intent: internet_banking
+  - action: utter_selected_service
+
+- story: complaints register
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: complaints
+  - action: utter_complaints_redirect
+
+- story: branch check
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: branch_info
+  - action: user_location_form
+  - action: action_user_location_submit
+
+- story: human help
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: human_handoff
+  - action: utter_human_handoff_agreed
+  - intent: thankyou
+  - action: utter_goodbye
